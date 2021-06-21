@@ -2,6 +2,7 @@ package br.com.maykontaroco.personapi.controller;
 
 import br.com.maykontaroco.personapi.dto.MessageResponseDTO;
 import br.com.maykontaroco.personapi.dto.request.PersonDTO;
+import br.com.maykontaroco.personapi.entity.Person;
 import br.com.maykontaroco.personapi.exception.PersonNotFoundException;
 import br.com.maykontaroco.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class PersonController {
     @GetMapping("/{id}")
     public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException {
         return personService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDTO updateById(@PathVariable Long id, @RequestBody PersonDTO personDTO) throws PersonNotFoundException {
+        return personService.updateById(id, personDTO);
     }
 
     @DeleteMapping("/{id}")
